@@ -23,7 +23,17 @@ add_executable(main src/main.cpp
         src/StateEnum.cpp
         src/StateEnum.h
         src/Font.cpp
-        src/Font.h)
+        src/Font.h
+        src/TextInput.cpp
+        src/TextInput.h
+        src/TextBox.cpp
+        src/TextBox.h
+        src/Label.cpp
+        src/Label.h
+        src/UserInputText.cpp
+        src/UserInputText.h
+        src/UserInputText.h
+)
 target_link_libraries(main PRIVATE sfml-graphics sfml-window sfml-system sfml-audio)
 target_compile_features(main PRIVATE cxx_std_17)
 

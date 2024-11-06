@@ -16,6 +16,9 @@ public:
 	Cursor();
 	virtual void draw(sf::RenderTarget& window, sf::RenderStates states) const;
 	void update();
+	void setPosition(std::vector<int> position);
+
+	bool isBlinking();
 };
 
 

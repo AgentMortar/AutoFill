@@ -2,12 +2,15 @@
 
 #include <iostream>
 #include "Cursor.h"
+#include "TextInput.h"
 int main()
 {
-    sf::RenderWindow window({420, 720, 32}, "Cursor", (sf::Style::Close| sf::Style::Resize ) );
+    sf::RenderWindow window({1000, 1000, 32}, "Cursor", (sf::Style::Close| sf::Style::Resize ) );
     window.setFramerateLimit(60);
-    Cursor c;
-    c.enableState(BLINKING);
+
+    TextInput text_input;
+
+
     while(window.isOpen())
     {
         sf::Event event;
@@ -15,10 +18,24 @@ int main()
         {
             if(sf::Event::Closed == event.type)
                 window.close();
+
+            if(sf::Event::TextEntered == event.type)
+            {
+
+                text_input.handleTextInput(event);
+            }
+
+
+            if(sf::Event::MouseButtonPressed == event.type)
+            {
+                text_input.handleLeftClick(event);
+            }
+
         }
-        c.update();
+
         window.clear();
-        window.draw(c);
+        text_input.draw(window , sf::RenderStates::Default);
+        text_input.update();
         window.display();
     }
 

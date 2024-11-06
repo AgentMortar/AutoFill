@@ -1,21 +1,26 @@
 #include <SFML/Graphics.hpp>
 
+#include <iostream>
+#include "Cursor.h"
 int main()
 {
-    auto window = sf::RenderWindow({1920u, 1080u}, "CMake SFML Project");
-    window.setFramerateLimit(144);
-
-    while (window.isOpen())
+    sf::RenderWindow window({420, 720, 32}, "Cursor", (sf::Style::Close| sf::Style::Resize ) );
+    window.setFramerateLimit(60);
+    Cursor c;
+    c.enableState(BLINKING);
+    while(window.isOpen())
     {
-        for (auto event = sf::Event(); window.pollEvent(event);)
+        sf::Event event;
+        while(window.pollEvent(event))
         {
-            if (event.type == sf::Event::Closed)
-            {
+            if(sf::Event::Closed == event.type)
                 window.close();
-            }
         }
-
+        c.update();
         window.clear();
+        window.draw(c);
         window.display();
     }
+
+    return 0;
 }

@@ -9,9 +9,11 @@
 #include "Cursor.h"
 #include "Label.h"
 #include "UserInputText.h"
+#include "fallingText.h"
 
 #include <string>
 #include <vector>
+
 
 
 class TextInput {
@@ -21,6 +23,8 @@ private:
 	Label label;
 	Cursor cursor;
 	UserInputText inputText;
+
+	std::vector<fallingText> fallingTextVector;
 
 
 	void setCursorPosition(std::vector<int> position);
@@ -51,6 +55,7 @@ public:
 
 	void handleLeftClick(const sf::Event & event);
 	void handleTextInput(const sf::Event & event);
+
 };
 
 

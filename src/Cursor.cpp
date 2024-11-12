@@ -8,7 +8,7 @@ Cursor::Cursor()
 {
 	sf::Text::setFont(Font::getFont("arial"));
 	sf::Text::setString("|");
-	sf::Text::setCharacterSize(24);
+	sf::Text::setCharacterSize(30);
 	sf::Text::setPosition(0, 0);
 
 }
@@ -21,14 +21,10 @@ void Cursor::draw(sf::RenderTarget &window, sf::RenderStates states) const
 
 void Cursor::update()
 {
-	if(checkState(BLINKING))
+	if(checkState(BLINKING) && clock.getElapsedTime().asMilliseconds() > 250)
 	{
-		if(clock.getElapsedTime().asMilliseconds() > 250)
-		{
-			toggleState(HIDDEN);
-			clock.restart();
-		}
-
+		toggleState(HIDDEN);
+		clock.restart();
 	}
 }
 

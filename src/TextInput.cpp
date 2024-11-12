@@ -106,10 +106,6 @@ void TextInput::setInputTextFont(std::string fontName)
 }
 
 
-void TextInput::setCursorPosition(std::vector<int> position)
-{
-
-}
 
 void TextInput::setPosition(std::vector<int> position)
 {
@@ -127,11 +123,22 @@ void TextInput::draw(sf::RenderTarget &window, sf::RenderStates states) const
 	label.draw(window, states);
 	cursor.draw(window, states);
 	inputText.draw(window, states);
+
+	for (auto &text : fallingTextVector)
+	{
+		text.draw(window, states);
+	}
 }
 
 void TextInput::update()
 {
 	cursor.update();
+
+	for (auto &text : fallingTextVector)
+	{
+		text.setPosition({text.getPosition()[0], text.getPosition()[1]+1});
+	}
+
 }
 
 void TextInput::handleLeftClick(const sf::Event &event)
@@ -163,10 +170,12 @@ void TextInput::handleTextInput(const sf::Event &event)
 		}
 		else if (event.text.unicode < 128)
 		{
-			if (inputText.getWidth() < box.getWidth())
+			if (inputText.getWidth() < box.getWidth() - 15)
 			{
 				inputText.addCharacter(event.text.unicode);
 			}
+
+
 		}
 		//The +2 is just to give a little space between the text and the cursor
 		cursor.setPosition({static_cast<int>(inputText.getPosition()[0]+inputText.getWidth())+2, inputText.getPosition()[1]});

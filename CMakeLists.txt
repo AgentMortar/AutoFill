@@ -33,6 +33,14 @@ add_executable(main src/main.cpp
         src/UserInputText.cpp
         src/UserInputText.h
         src/UserInputText.h
+        src/Heap.hpp
+        src/Heap.h
+        src/fallingText.cpp
+        src/fallingText.h
+        src/Word.cpp
+        src/Word.h
+        src/WordSort.cpp
+        src/WordSort.h
 )
 target_link_libraries(main PRIVATE sfml-graphics sfml-window sfml-system sfml-audio)
 target_compile_features(main PRIVATE cxx_std_17)

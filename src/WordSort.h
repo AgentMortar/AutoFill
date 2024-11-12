@@ -12,6 +12,7 @@
 #include "UserInputText.h"
 
 
+
 class WordSort {
 
   private:
@@ -24,7 +25,6 @@ class WordSort {
 	WordSort();
 
 
-	~WordSort();
 
 	void setUserInputText(UserInputText userInputText);
 
@@ -33,8 +33,8 @@ class WordSort {
 
 	void setPriority();
 
-	void displayHeap();
 
+	void draw(sf::RenderTarget &window, sf::RenderStates states) const;
 
 
 

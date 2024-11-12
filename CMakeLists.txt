@@ -41,6 +41,8 @@ add_executable(main src/main.cpp
         src/Word.h
         src/WordSort.cpp
         src/WordSort.h
+        src/Heap.h
+        src/Heap.hpp
 )
 target_link_libraries(main PRIVATE sfml-graphics sfml-window sfml-system sfml-audio)
 target_compile_features(main PRIVATE cxx_std_17)

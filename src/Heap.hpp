@@ -1,4 +1,6 @@
 
+#include "Heap.h"
+
 template<typename T>
 Heap<T>::Heap()
 {
@@ -60,7 +62,7 @@ void Heap<T>::erase()
 }
 
 template<typename T>
-int Heap<T>::getSize()
+int Heap<T>::getSize() const
 {
 	return _size;
 }
@@ -72,7 +74,7 @@ bool Heap<T>::isEmpty()
 }
 
 template<typename T>
-T Heap<T>::getTop()
+T Heap<T>::getTop() const
 {
 	if (_size < 1)
 	{
@@ -92,59 +94,44 @@ void Heap<T>::print()
 }
 
 template <typename T>
-void Heap<T>::reheapifyUp(int index)
-{
-	if (largerThanParent(index))
-	{
-		T temp = heapArray.at((index-1)/2);
-		heapArray.at((index-1)/2) = heapArray.at(index);
-		heapArray.at(index) = temp;
-		reheapifyUp((index-1)/2);
+void Heap<T>::reheapifyUp(int index) {
+	if (index == 0) return;
+	int parentIndex = (index - 1) / 2;
+	if (hasHigherPriority(heapArray[index], heapArray[parentIndex])) {
+		std::swap(heapArray[index], heapArray[parentIndex]);
+		reheapifyUp(parentIndex);
 	}
+}
 
+
+template <typename T>
+void Heap<T>::reheapify() {
+	// Perform a "heapify down" operation from the root downwards
+	for (int i = (_size / 2) - 1; i >= 0; i--) {
+		reheapifyDown(i);
+	}
 }
 
 template <typename T>
-void Heap<T>::reheapifyDown(int index)
-{
+void Heap<T>::reheapifyDown(int index) {
+	int leftChild = 2 * index + 1;
+	int rightChild = 2 * index + 2;
+	int largest = index;
 
-	T nodeValue = heapArray.at(index);
-	if (((2 * index) + 1) > (_size-1))
-	{
-		return;
+	if (leftChild < _size && hasHigherPriority(heapArray[leftChild], heapArray[largest])) {
+		largest = leftChild;
 	}
-	if (((2 * index) + 2) > (_size-1))
-	{
-		T ChildValue = heapArray.at((2 * index) + 1);
-		if(ChildValue > nodeValue)
-		{
-			heapArray.at(index) = ChildValue;
-			heapArray.at((2 * index) + 1) = nodeValue;
-			return;
-		}
-		return;
+	if (rightChild < _size && hasHigherPriority(heapArray[rightChild], heapArray[largest])) {
+		largest = rightChild;
 	}
-
-	T leftChildValue = heapArray.at((2 * index) + 1);
-	T rightChildValue = heapArray.at((2 * index) + 2);
-
-	if (leftChildValue >= rightChildValue && leftChildValue > nodeValue )
-	{
-		heapArray.at(index) = leftChildValue;
-		heapArray.at((2 * index) + 1) = nodeValue;
-		reheapifyDown((2 * index) + 1);
+	if (largest != index) {
+		std::swap(heapArray[index], heapArray[largest]);
+		reheapifyDown(largest);
 	}
-	else if (rightChildValue > leftChildValue  && rightChildValue > nodeValue)
-	{
-		heapArray.at(index) = rightChildValue;
-		heapArray.at((2 * index) + 2) = nodeValue;
-		reheapifyDown((2 * index) + 2);
-	}
-
 }
 
-template<typename T>
-bool largerThanParent(int index) const {
+template <typename T>
+bool Heap<T>::largerThanParent(int index) const {
 	if (index == 0) return false;
 	int parentIndex = (index - 1) / 2;
 	return hasHigherPriority(heapArray[index], heapArray[parentIndex]);
@@ -157,7 +144,7 @@ Heap<T>& Heap<T>::operator+=(const T& data)
 	return *this;
 }
 
-template<typename T>
-bool hasHigherPriority(const T& a, const T& b) const {
+template <typename T>
+bool Heap<T>::hasHigherPriority(const T& a, const T& b) const {
 	return a.getPriority() > b.getPriority();
 }

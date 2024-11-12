@@ -10,6 +10,7 @@
 #include "Label.h"
 #include "UserInputText.h"
 #include "fallingText.h"
+#include "WordSort.h"
 
 #include <string>
 #include <vector>
@@ -23,6 +24,7 @@ private:
 	Label label;
 	Cursor cursor;
 	UserInputText inputText;
+	WordSort wordSort;
 
 	std::vector<fallingText> fallingTextVector;
 

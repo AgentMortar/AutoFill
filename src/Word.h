@@ -6,8 +6,8 @@
 #define WORD_H
 
 #include <SFML/Graphics.hpp>
+#include "Font.h"
 
-//Class for word objects that have a text and a priority value
 
 class Word {
 
@@ -22,10 +22,16 @@ public:
 	explicit Word(std::string text);
 	Word(std::string text, int priority);
 
-	sf::Text getText();
+	sf::Text& getText();
+
+	std::string getTextString();
+
+
 	void setText(std::string text);
-	int getPriority();
+	int getPriority() const;
 	void setPriority(int priority);
+
+	void draw(sf::RenderTarget &window, sf::RenderStates states) const;
 
 
 };

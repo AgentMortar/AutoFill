@@ -21,6 +21,7 @@ TextInput::TextInput()
 	inputText.setText("");
 
 
+
 	setPosition({0,0});
 
 }
@@ -123,11 +124,11 @@ void TextInput::draw(sf::RenderTarget &window, sf::RenderStates states) const
 	label.draw(window, states);
 	cursor.draw(window, states);
 	inputText.draw(window, states);
+	wordSort.draw(window, states);
 
-	for (auto &text : fallingTextVector)
-	{
-		text.draw(window, states);
-	}
+
+
+
 }
 
 void TextInput::update()
@@ -179,5 +180,7 @@ void TextInput::handleTextInput(const sf::Event &event)
 		}
 		//The +2 is just to give a little space between the text and the cursor
 		cursor.setPosition({static_cast<int>(inputText.getPosition()[0]+inputText.getWidth())+2, inputText.getPosition()[1]});
+		wordSort.setUserInputText(inputText);
+
 	}
 }

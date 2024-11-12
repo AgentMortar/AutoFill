@@ -5,7 +5,7 @@
 #ifndef HEAP_H
 #define HEAP_H
 #include <vector>
-
+#include <iostream>
 template <typename T>
 class Heap
 {
@@ -17,24 +17,28 @@ private:
 
 
 	void reheapifyUp(int index);
+
+
+
 	void reheapifyDown(int index);
 
-	bool largerThanParent(int index);
+	bool hasHigherPriority(const T& a, const T& b) const;
 
+	bool largerThanParent(int index) const;
 
 public:
 	Heap();
 	explicit Heap(std::vector<T> inputArray);
 	~Heap();
-
+	void reheapify();
 	void push(const T& data);
 	void pop();
 
 	void erase();
 
-	int getSize();
+	int getSize() const;
 	bool isEmpty();
-	T getTop();
+	T getTop() const;
 
 	void print();
 
@@ -43,6 +47,6 @@ public:
 };
 
 
-#include "../Heap.hpp"
+#include "Heap.hpp"
 #endif //HEAP_H
 

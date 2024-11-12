@@ -8,7 +8,7 @@ TextInput::TextInput()
 {
 	label.setFont("arial");
 	label.setSize(30);
-	label.setText("Enter first and last name:");
+	label.setText("Enter first name:");
 	label.setMargin({ 10, 10, 10, 10 });
 
 	box.setSize({500,45});

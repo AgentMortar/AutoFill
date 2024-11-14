@@ -2,6 +2,7 @@
 
 
 
+
 #include "WordSort.h"
 
 WordSort::WordSort()
@@ -122,4 +123,3 @@ void WordSort::draw(sf::RenderTarget &window, sf::RenderStates states) const
 		++i;
 	}
 }
-

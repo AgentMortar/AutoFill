@@ -74,7 +74,7 @@ bool Heap<T>::isEmpty()
 }
 
 template<typename T>
-T Heap<T>::getTop() const
+T& Heap<T>::getTop()
 {
 	if (_size < 1)
 	{
@@ -82,6 +82,8 @@ T Heap<T>::getTop() const
 	}
 	return heapArray.at(0);
 }
+
+
 
 template<typename T>
 void Heap<T>::print()

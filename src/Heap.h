@@ -38,11 +38,12 @@ public:
 
 	int getSize() const;
 	bool isEmpty();
-	T getTop() const;
+	T& getTop();
 
 	void print();
 
 	Heap<T>& operator+=(const T& data);
+
 
 };
 

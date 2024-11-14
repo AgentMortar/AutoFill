@@ -15,13 +15,13 @@
 
 class WordSort {
 
-  private:
+private:
 	std::vector<std::string> _strWordVector;
 	std::vector<Word> _wordObjectVector;
 	Heap<Word> _wordHeap;
 	UserInputText _userInputText;
 
-  public:
+public:
 	WordSort();
 
 
